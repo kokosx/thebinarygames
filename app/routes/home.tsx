@@ -1,13 +1,16 @@
+import { Game } from "../lib/useGame";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "The binary games" },
+    { name: "description", content: "Play the binary games!" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  const game = new Game();
+  game.createGame(10, 16, 10, 3, 128);
+
+  return <></>;
 }
