@@ -5,8 +5,10 @@ import PageHeading from "../components/PageHeading";
 const layout = () => {
   return (
     <GameProvider>
-      <PageHeading />
-      <Outlet />
+      <div className="h-screen min-h-full">
+        <PageHeading />
+        <Outlet />
+      </div>
     </GameProvider>
   );
 };

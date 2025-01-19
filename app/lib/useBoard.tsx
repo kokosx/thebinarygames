@@ -5,24 +5,33 @@ export const useBoard = () => {
   const game = useGame();
   const [revealed, setRevealed] = useState([] as string[]);
   const [guessed, setGuessed] = useState([] as string[]);
+  const [shown, setShown] = useState([] as string[]);
+
   const revealCard = (id: string) => {
+    setShown((prev) => [...prev, id]);
     setRevealed((prev) => [...prev, id]);
   };
 
   const isRevealed = (id: string) => {
-    return revealed.includes(id);
+    return shown.includes(id);
   };
 
   useEffect(() => {
     if (revealed.length == 2) {
-      if (revealed[0][0] == revealed[1][0]) {
+      if (revealed[0][0] === revealed[1][0]) {
         setGuessed((prev) => [...prev, revealed[0], revealed[1]]);
       }
-      setTimeout(() => {
-        setRevealed(() => []);
-      }, 800);
+      setRevealed(() => []);
     }
-  }, [revealed, guessed]);
+  }, [revealed, guessed, setGuessed, setRevealed]);
+
+  useEffect(() => {
+    if (shown.length === 2) {
+      setTimeout(() => {
+        setShown(() => []);
+      }, 1000);
+    }
+  }, [shown]);
 
   const isGuessed = (id: string) => {
     return guessed.includes(id);

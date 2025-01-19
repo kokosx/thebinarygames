@@ -4,7 +4,7 @@ type Props = {
   revealCard: () => void;
   isRevealed: boolean;
   value: string;
-  isFinished: boolean;
+  isGuessed: boolean;
   type: NumberTypes;
 };
 
@@ -12,11 +12,13 @@ const GameCard = ({
   isRevealed,
   revealCard,
   value,
-  isFinished,
+  isGuessed,
   type,
 }: Props) => {
   const handleClick = () => {
-    if (isFinished) return;
+    console.log(isGuessed);
+    if (isGuessed) return;
+
     revealCard();
   };
 
@@ -25,15 +27,15 @@ const GameCard = ({
       <div
         onClick={handleClick}
         className={`card-flipper relative w-full h-full transition-transform duration-500 transform-style-3d ${
-          isRevealed || isFinished ? "rotate-y-180" : ""
+          isRevealed || isGuessed ? "rotate-y-180" : ""
         }`}
       >
         <div className="card-front absolute w-full h-full backface-hidden bg-orange-600 rounded-lg flex items-center justify-center hover:text-[120%]">
           ?
         </div>
         <div
-          className={`card-back absolute w-full h-full backface-hidden bg-orange-600 rounded-lg flex items-center justify-center rotate-y-180 ${
-            isFinished && "bg-green-500"
+          className={`card-back delay-[250]  absolute w-full h-full backface-hidden  rounded-lg flex items-center justify-center rotate-y-180 ${
+            isGuessed ? "bg-green-500" : "bg-orange-600"
           }`}
         >
           <span>

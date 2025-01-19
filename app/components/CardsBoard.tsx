@@ -5,13 +5,13 @@ const CardsBoard = () => {
   const { cards, finished } = useBoard();
 
   return (
-    <div className="flex flex-wrap">
+    <div className="flex h-full flex-wrap w-full gap-4 items-center justify-center">
       {cards.map((card) => (
         <GameCard
           key={card.id}
           value={card.value}
           isRevealed={card.isRevealed}
-          isFinished={card.isGuessed}
+          isGuessed={card.isGuessed}
           revealCard={card.revealCard}
           type={card.type}
         />
