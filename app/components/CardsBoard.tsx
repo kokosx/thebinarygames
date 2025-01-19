@@ -10,9 +10,9 @@ const CardsBoard = () => {
         <GameCard
           key={card.id}
           value={card.value}
-          isRevealed={card.isRevealed}
+          isShown={card.isShown}
           isGuessed={card.isGuessed}
-          revealCard={card.revealCard}
+          showCard={card.showCard}
           type={card.type}
         />
       ))}

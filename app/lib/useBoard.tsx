@@ -7,12 +7,12 @@ export const useBoard = () => {
   const [guessed, setGuessed] = useState([] as string[]);
   const [shown, setShown] = useState([] as string[]);
 
-  const revealCard = (id: string) => {
+  const showCard = (id: string) => {
     setShown((prev) => [...prev, id]);
     setRevealed((prev) => [...prev, id]);
   };
 
-  const isRevealed = (id: string) => {
+  const isShown = (id: string) => {
     return shown.includes(id);
   };
 
@@ -41,9 +41,9 @@ export const useBoard = () => {
     cards: game.cards.map((card) => {
       return {
         ...card,
-        isRevealed: isRevealed(card.id),
+        isShown: isShown(card.id),
         isGuessed: isGuessed(card.id),
-        revealCard: () => revealCard(card.id),
+        showCard: () => showCard(card.id),
         type: card.id[1] == `a` ? game.sideOneType : game.sideTwoType,
       };
     }),

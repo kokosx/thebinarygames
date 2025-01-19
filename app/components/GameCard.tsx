@@ -1,25 +1,19 @@
 import type { NumberTypes } from "../lib/useGame";
 
 type Props = {
-  revealCard: () => void;
-  isRevealed: boolean;
+  showCard: () => void;
+  isShown: boolean;
   value: string;
   isGuessed: boolean;
   type: NumberTypes;
 };
 
-const GameCard = ({
-  isRevealed,
-  revealCard,
-  value,
-  isGuessed,
-  type,
-}: Props) => {
+const GameCard = ({ showCard, isShown, value, isGuessed, type }: Props) => {
   const handleClick = () => {
     console.log(isGuessed);
     if (isGuessed) return;
 
-    revealCard();
+    showCard();
   };
 
   return (
@@ -27,7 +21,7 @@ const GameCard = ({
       <div
         onClick={handleClick}
         className={`card-flipper relative w-full h-full transition-transform duration-500 transform-style-3d ${
-          isRevealed || isGuessed ? "rotate-y-180" : ""
+          isShown || isGuessed ? "rotate-y-180" : ""
         }`}
       >
         <div className="card-front absolute w-full h-full backface-hidden bg-orange-600 rounded-lg flex items-center justify-center hover:text-[120%]">
